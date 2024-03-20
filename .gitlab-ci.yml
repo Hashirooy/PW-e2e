@@ -12,4 +12,5 @@ job_test:
   stage: test
   script:
     - echo "Running tests"
+    - npm i
     - npm run e2e
