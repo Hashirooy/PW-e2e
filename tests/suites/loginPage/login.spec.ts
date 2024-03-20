@@ -39,6 +39,6 @@ test("Correct login on site", async ({ loginPage }) => {
   await loginPage.clickLoginButton();
 });
 
-test.only("Api test", async ({}) => {
+test("Api test", async ({}) => {
   await createTask();
 });
