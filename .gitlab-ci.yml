@@ -5,7 +5,7 @@ test:
   stage: test
   image: node:latest
   before_script:
-    - npm install -g playwright
+    - sudo npm install -g playwright
     # Install any other dependencies your tests require
   script:
     - playwright install
