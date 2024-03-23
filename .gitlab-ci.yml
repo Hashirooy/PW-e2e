@@ -6,6 +6,7 @@ test:
   image: node:latest
   before_script:
     - sudo npm install -g playwright
+    - qwerty44
     # Install any other dependencies your tests require
   script:
     - playwright install
