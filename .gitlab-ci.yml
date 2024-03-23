@@ -3,14 +3,19 @@ variables:
 
 
 stages:
+  - build
   - test
 
-test:
-  stage: test
-  image: node:latest
-  before_script:
-    - npm install playwright
-    # Install any other dependencies your tests require
+job_build:
+  stage: build
   script:
-    - npx playwright install
-    - playwright test
+    - echo "Building the project"
+
+job_test:
+  image: mcr.microsoft.com/playwright:v1.42.1-jammy
+  stage: test
+  script:
+    - echo "Running tests"
+    - npm i
+    - sudo npx playwright install && npx playwright install --with-deps
+    - npm run e2e
