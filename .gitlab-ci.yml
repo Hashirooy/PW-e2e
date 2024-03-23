@@ -9,7 +9,7 @@ test:
   stage: test
   image: node:latest
   before_script:
-    - npm install -g playwright
+    - npm install playwright
     # Install any other dependencies your tests require
   script:
     - playwright install
