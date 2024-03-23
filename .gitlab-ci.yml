@@ -12,5 +12,5 @@ test:
     - npm install playwright
     # Install any other dependencies your tests require
   script:
-    - playwright install
+    - npx playwright install
     - playwright test
