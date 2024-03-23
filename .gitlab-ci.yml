@@ -10,3 +10,5 @@ test:
   script:
     - playwright install
     - playwright test
+  tags:
+    - firtRunner
