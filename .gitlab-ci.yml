@@ -8,5 +8,5 @@ test:
     - npm install -g playwright
     # Install any other dependencies your tests require
   script:
-    - sudo playwright install
+    - playwright install
     - playwright test
