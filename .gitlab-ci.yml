@@ -6,6 +6,9 @@ stages:
   - build
   - test
 
+before_script:
+  - apt-get update
+  - apt-get install -y sudo
 job_build:
   stage: build
   script:
