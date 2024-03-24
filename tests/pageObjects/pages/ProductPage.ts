@@ -21,19 +21,19 @@ export class ProductPage extends BasePage {
   }
 
   async ClickBackToProduct() {
-    test.step("Нажатие на кнопку назад к продуктам", async () => {
+    await test.step("Нажатие на кнопку назад к продуктам", async () => {
       await this.backToProductButton.click();
     });
   }
 
   async ClickAddToCardButton() {
-    test.step("Нажатие на кнопку Добавить товар", async () => {
+    await test.step("Нажатие на кнопку Добавить товар", async () => {
       await this.addToCardButton.click();
     });
   }
 
   async ClickGoToCart() {
-    test.step("Нажать на кнопку переход в корзину", async () => {
+    await test.step("Нажать на кнопку переход в корзину", async () => {
       await this.goToCart.click();
     });
   }
