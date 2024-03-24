@@ -12,19 +12,19 @@ export class CartPage extends BasePage {
   }
 
   async ClickContinueShoppingbutton() {
-    test.step("Нажатие на кнопку продолжить покупки", async () => {
+    await test.step("Нажатие на кнопку продолжить покупки", async () => {
       await this.continueShoppingbutton.click();
     });
   }
 
   async ClickChekoutButton() {
-    test.step("нажатие на кнопку к оплате", async () => {
+    await test.step("нажатие на кнопку к оплате", async () => {
       await this.chekoutButton.click();
     });
   }
 
   async getProductPrice() {
-    test.step("Взять цену продукта", async () => {
+    await test.step("Взять цену продукта", async () => {
       await this.productPrice.textContent();
     });
   }

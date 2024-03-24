@@ -20,13 +20,21 @@ export class InventoryPage extends BasePage {
   }
 
   async openCard(i: number) {
-    test.step("Клик по title карточки товара", async () => {
+    await test.step("нажать на заголовок карточки", async () => {
       await this.cardTitle.nth(i).click();
     });
   }
   async ClickGoToCart() {
-    test.step("Нажать на кнопку переход в корзину", async () => {
+    await test.step("Нажать на кнопку переход в корзину", async () => {
       await this.goToCart.click();
+    });
+  }
+
+  async checkCardTitle(expectedText: string, i: number): Promise<void> {
+    await test.step("Проверяем заголовок карточки", async () => {
+      await expect(await this.cardTitle.nth(i).innerText()).toContain(
+        expectedText
+      );
     });
   }
 }
