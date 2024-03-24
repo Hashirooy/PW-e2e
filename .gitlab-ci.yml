@@ -1,7 +1,7 @@
 variables:
   NPM_TOKEN: "test"
 
-
+image: mcr.microsoft.com/playwright:v1.42.1-jammy
 stages:
   - build
   - test
@@ -12,7 +12,6 @@ job_build:
     - echo "Building the project"
 
 job_test:
-  image: mcr.microsoft.com/playwright:v1.42.1-jammy
   stage: test
   script:
     - echo "Running tests"
