@@ -1,6 +1,8 @@
 variables:
   NPM_TOKEN: "test"
+
 image: docker:latest
+
 stages:
   - build
   - test
