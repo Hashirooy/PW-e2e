@@ -1,0 +1,1 @@
+{ hash: 'luhipasasu', providerType: null, error: null }

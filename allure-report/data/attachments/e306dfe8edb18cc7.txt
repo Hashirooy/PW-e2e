@@ -1,0 +1,1 @@
+{ hash: 'lunesedere', providerType: null, error: null }

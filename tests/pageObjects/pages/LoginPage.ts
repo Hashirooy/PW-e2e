@@ -1,4 +1,4 @@
-import { Page, test } from "@playwright/test";
+import { Page, test, expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { allure } from "allure-playwright";
 
@@ -15,13 +15,13 @@ export class LoginPage extends BasePage {
 
   async typeLoginField(login: string) {
     await test.step("Заполнить поле Логин", async () => {
-      await this.loginField.fill(login);
+      await this.fillElement(this.loginField, login);
     });
   }
 
   async typePasswordField(password: string) {
     await test.step("Заполнить поле пароль", async () => {
-      await this.passwordField.fill(password);
+      await this.fillElement(this.passwordField, password);
     });
   }
 
@@ -39,7 +39,9 @@ export class LoginPage extends BasePage {
     });
   }
 
-  getErrorText() {
-    return this.errorMessage.textContent();
+  async CheckErrorMessage(textError: string) {
+    await test.step("Проверка сообщения об ошибке", async () => {
+      expect(await this.errorMessage.textContent()).toEqual(textError);
+    });
   }
 }
