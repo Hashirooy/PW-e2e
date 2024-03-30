@@ -13,10 +13,9 @@ job_build:
     - echo "Building the project"
 
 job_test:
-  image: mcr.microsoft.com/playwright:v1.42.1-jammy
   stage: test
   script:
     - echo "Running tests"
     - npm i
-    - sudo npx playwright install && npx playwright install --with-deps
+    - npx playwright install && npx playwright install --with-deps
     - npm run e2e
