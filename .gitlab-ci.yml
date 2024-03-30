@@ -1,7 +1,7 @@
 variables:
   NPM_TOKEN: "test"
 
-image: docker:latest
+image: mcr.microsoft.com/playwright:bionic
 
 stages:
   - build
