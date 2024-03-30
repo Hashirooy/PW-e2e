@@ -30,5 +30,5 @@ job_test:
   script:
     - echo "Running tests"
     - npm i
-    - npx playwright install && npx playwright install --with-deps
+    - npx playwright install
     - npm run e2e
