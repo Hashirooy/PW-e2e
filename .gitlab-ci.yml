@@ -1,9 +1,24 @@
 variables:
   NPM_TOKEN: "test"
-image: docker:latest
+
+image: mcr.microsoft.com/playwright:bionic
+
 stages:
+  - setup
   - build
   - test
+
+setup:
+  stage: setup
+  script:
+    # Установка nvm
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    - export NVM_DIR="$HOME/.nvm"
+    - source "$NVM_DIR/nvm.sh"
+    # Установка последней версии Node.js
+    - nvm install node
+    - node --version
+    - npm --version
 
 job_build:
   stage: build
@@ -11,10 +26,9 @@ job_build:
     - echo "Building the project"
 
 job_test:
-  image: mcr.microsoft.com/playwright:v1.42.1-jammy
   stage: test
   script:
     - echo "Running tests"
     - npm i
-    - sudo npx playwright install && npx playwright install --with-deps
+    - npx playwright install
     - npm run e2e
