@@ -1,1 +1,0 @@
-locator('.inventory_item')
