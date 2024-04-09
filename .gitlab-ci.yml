@@ -28,17 +28,8 @@ job_build:
 job_test:
   # image: node:latest
   stage: test
-  parallel: 2
   script:
     - echo "Running tests"
-    - echo $CI_NODE_INDEX
-    - echo $CI_NODE_TOTAL
     - npm i
     - npx playwright install
-    - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
-
-# job_allure:
-#   stage: test
-#   script: npm run allure:generate
-#   # needs:
-#   #   - job: job_test
+    - npm run e2e
