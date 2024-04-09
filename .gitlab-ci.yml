@@ -8,17 +8,17 @@ stages:
   - build
   - test
 
-# setup:
-#   stage: setup
-#   script:
-#     # Установка nvm
-#     - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-#     - export NVM_DIR="$HOME/.nvm"
-#     - source "$NVM_DIR/nvm.sh"
-#     # Установка последней версии Node.js
-#     - nvm install node
-#     - node --version
-#     - npm --version
+setup:
+  stage: setup
+  script:
+    # Установка nvm
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    - export NVM_DIR="$HOME/.nvm"
+    - source "$NVM_DIR/nvm.sh"
+    # Установка последней версии Node.js
+    - nvm install node
+    - node --version
+    - npm --version
 
 job_build:
   stage: build
@@ -26,7 +26,6 @@ job_build:
     - echo "Building the project"
 
 job_test:
-  image: node:latest
   stage: test
   parallel: 2
   script:
@@ -36,7 +35,6 @@ job_test:
     - npm i
     - npx playwright install
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
-
 # job_allure:
 #   stage: test
 #   script: npm run allure:generate
