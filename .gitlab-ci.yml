@@ -37,8 +37,8 @@ job_test:
     - npx playwright install
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
 
-job_allure:
-  stage: test
-  script: npm run allure:generate
-  # needs:
-  #   - job: job_test
+# job_allure:
+#   stage: test
+#   script: npm run allure:generate
+#   # needs:
+#   #   - job: job_test
