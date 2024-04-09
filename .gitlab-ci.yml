@@ -30,6 +30,9 @@ job_test:
   stage: test
   script:
     - echo "Running tests"
+    - echo $CI_NODE_INDEX
+    - echo $CI_NODE_TOTAL
     - npm i
     - npx playwright install
-    - npm run e2e
+    - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
+
