@@ -28,6 +28,7 @@ job_build:
 job_test:
   # image: node:latest
   stage: test
+  parallel: 2
   script:
     - echo "Running tests"
     - echo $CI_NODE_INDEX
