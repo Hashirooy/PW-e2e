@@ -32,3 +32,8 @@ job_test:
     - npm i
     - npx playwright install
     - npm run e2e
+job_allure:
+  stage: test
+  script: npm run allure:generate
+  needs:
+    - job: job-test

@@ -1,7 +1,8 @@
 {
   "scripts": {
     "e2e": "npx playwright test",
-    "e2e:debug": "npx playwright test --debug"
+    "e2e:debug": "npx playwright test --debug",
+    "allure:generate": "allure generate ./allure-results --clean && allure open ./allure-report"
   },
   "devDependencies": {
     "@playwright/test": "^1.41.2",
