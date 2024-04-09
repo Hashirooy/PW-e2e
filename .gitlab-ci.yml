@@ -4,7 +4,7 @@ variables:
 image: mcr.microsoft.com/playwright:bionic
 
 stages:
-  - setup
+  # - setup
   - build
   - test
 
