@@ -2,6 +2,7 @@ import { Page, test, expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { allure } from "allure-playwright";
 import { Users } from "../../testData/user";
+import { getClients } from "../../utils/database";
 
 export class LoginPage extends BasePage {
   readonly loginField = this.page.locator("[id=user-name]");
@@ -33,11 +34,17 @@ export class LoginPage extends BasePage {
   }
 
   async logInInSite() {
-    await test.step("Вход на сайт", async () => {
-      await this.fillElement(this.loginField, Users.standart_user.login);
-      await this.fillElement(this.passwordField, Users.standart_user.password);
-      await this.clickLoginButton();
-    });
+    const user = await getClients(1);
+    if (user) {
+      await test.step("Вход на сайт", async () => {
+        await this.fillElement(this.loginField, user.user_name);
+        await this.fillElement(
+          this.passwordField,
+          Users.standart_user.password
+        );
+        await this.clickLoginButton();
+      });
+    }
   }
 
   async CheckErrorMessage(textError: string) {

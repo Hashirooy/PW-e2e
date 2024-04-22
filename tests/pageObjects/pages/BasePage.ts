@@ -1,4 +1,5 @@
 import { Locator, Page, test } from "@playwright/test";
+import { auth } from "../../helpers/auth";
 
 export class BasePage {
   page: Page;

@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Apr 09 21:29:00 GST 2024","Tue Apr 09 21:29:02 GST 2024","2069","chromium","suites\practisePage\practise.spec.ts","","","","upload file",""
+"passed","Mon Apr 22 21:41:24 NOVT 2024","Mon Apr 22 21:41:26 NOVT 2024","1583","chromium","api\posts\posts.spec.ts","","","","get posts list",""
