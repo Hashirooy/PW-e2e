@@ -10,6 +10,15 @@ export class PostsApi extends BaseApiTest {
     return response;
   }
 
+  async deletePosts(id: string) {
+    await this.setup();
+    const response = await this.delete(
+      "https://freefakeapi.io/authapi/posts/" + id
+    );
+    await this.teardown();
+    return response;
+  }
+  // methods for cheking
   async checkNumberofPosts(factualNumber: number, expectNumber: number) {
     test.step("Checking nubmer of posts", async () => {
       expect(factualNumber).toEqual(expectNumber);

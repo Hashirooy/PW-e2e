@@ -75,13 +75,6 @@ export async function getClients(user_id): Promise<User | undefined> {
     });
 
     const selectedUser = users.map((u) => u.dataValues)[0];
-
-    // // Вывод результатов
-    // let selectedUsers = [];
-    // users.forEach((user) => {
-    //   selectedUsers.push(user.toJSON());
-    // });
-
     return selectedUser;
   } catch (error) {
     console.error("Ошибка при запросе данных:", error);

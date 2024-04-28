@@ -36,21 +36,6 @@ export class BaseApiTest {
     }
   }
 
-  // async getToken() {
-  //   await this.setup();
-  //   try {
-  //     const response = await this.post("https://freefakeapi.io/authapi/login", {
-  //       username: "MikePayne",
-  //       password: "myBeaut1fu11P@ssW0rd!",
-  //     });
-  //     this.token = JSON.parse(response).token;
-  //     await this.page?.pause();
-  //   } catch (error) {
-  //     throw new Error(`API request failed with status: ${error.message}`);
-  //   } finally {
-  //   }
-  // }
-
   async get(url: string): Promise<string> {
     if (!this.page) {
       throw new Error("Page is not initialized. Call setup() first.");
@@ -87,9 +72,24 @@ export class BaseApiTest {
       return "API request failed with status:";
     } else {
       const responseText = await response.text();
-      // console.log(responseText);
       allure.attachment("API Response", responseText, "text/plain");
       return responseText;
     }
+  }
+
+  // Добавляем метод delete
+  async delete(url: string): Promise<void> {
+    if (!this.page) {
+      throw new Error("Page is not initialized. Call setup() first.");
+    }
+    const response = await this.page.evaluate(async (url) => {
+      const response = await fetch(url, { method: "DELETE" });
+      if (!response.ok) {
+        throw new Error(`API request failed with status: ${response.status}`);
+      } else {
+        return await response.text();
+      }
+    }, url);
+    allure.attachment("API Response", response, "text/plain");
   }
 }
