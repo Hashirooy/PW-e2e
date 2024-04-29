@@ -28,6 +28,7 @@ Let's install dependencies for runnnig this tests:
 
 npm install
 npx playwright install //install playwright
+npm install -g allure-commandline
 
 ```
 
