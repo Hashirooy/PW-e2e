@@ -1,3 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Apr 24 01:52:59 NOVT 2024","Wed Apr 24 01:53:01 NOVT 2024","1767","chromium","api\posts\posts.spec.ts","","","","delete posts",""
-"passed","Wed Apr 24 01:53:44 NOVT 2024","Wed Apr 24 01:53:46 NOVT 2024","1634","chromium","api\posts\posts.spec.ts","","","","get posts list",""
+"passed","Wed May 01 18:04:16 NOVT 2024","Wed May 01 18:04:17 NOVT 2024","1073","chromium","suites\api\users\users.spec.ts","","","","get token",""

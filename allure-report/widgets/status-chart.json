@@ -1,1 +1,1 @@
-[{"uid":"7524153417d179a1","name":"delete posts","time":{"start":1713898379891,"stop":1713898381658,"duration":1767},"status":"passed","severity":"normal"},{"uid":"681b5487b993697d","name":"get posts list","time":{"start":1713898424427,"stop":1713898426061,"duration":1634},"status":"passed","severity":"normal"}]
+[{"uid":"3e697524ee8819bc","name":"get token","time":{"start":1714561456712,"stop":1714561457785,"duration":1073},"status":"passed","severity":"normal"}]

@@ -8,7 +8,7 @@ For connecting to db I'm using Sequelize librirary. Thic connection implements i
 
 BaseApi class was created for api testing. This class contains basic methods for working with request.
 
-Also I installed Gitlab on VM. In project you can see gitlab-cy file, wich i using fot ci/cd.
+Also I installed Gitlab on VM. In project you can see gitlab-cy file, wich i using for ci/cd.
 
 ## Getting started
 

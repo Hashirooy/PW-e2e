@@ -1,4 +1,6 @@
-import { Locator, Page, test } from "@playwright/test";
+import { Locator, Page, test, expect } from "@playwright/test";
+// import { expect } from "@jest/globals";
+import { chromium } from "playwright";
 
 export class BasePage {
   page: Page;
@@ -24,7 +26,7 @@ export class BasePage {
   async getListOfelements(locator) {
     await test.step("Получить число объектов", async () => {
       const elements = await locator.all();
-      console.log(elements.length);
+      // console.log(elements.length);
       return elements.length;
     });
   }
@@ -72,5 +74,13 @@ export class BasePage {
     );
     // Отпускаем кнопку мыши, чтобы завершить перетаскивание
     await this.page.mouse.up();
+  }
+
+  async getjsAlert(buttonLocator: Locator) {
+    this.page.on("dialog", async (d) => {
+      expect(d.type()).toContain("alert");
+      expect(d.message()).toContain("I am a JS Alert");
+    });
+    await buttonLocator.click();
   }
 }

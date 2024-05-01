@@ -1,95 +1,45 @@
+import { APIRequestContext } from "@playwright/test";
 import { allure } from "allure-playwright";
-import { error } from "console";
-import { chromium, Page, Browser } from "playwright";
 
-export class BaseApiTest {
-  protected page: Page | null = null;
-  protected browser: Browser | null = null;
-  protected token: string | undefined;
-  protected url = "https://freefakeapi.io/authapi/login";
+export class BaseApi {
+  private request: APIRequestContext;
 
-  async setup() {
-    this.browser = await chromium.launch();
-    const context = await this.browser.newContext();
-    this.page = await context.newPage();
-    try {
-      const reponse = await this.post(this.url, {
-        username: "MikePayne",
-        password: "myBeaut1fu11P@ssW0rd!",
-      });
-
-      await this.page.setExtraHTTPHeaders({
-        Authorization: `Bearer ${JSON.parse(reponse).token}`,
-      });
-    } catch (error) {
-      throw new Error("error in getting token");
-    }
+  constructor(request: APIRequestContext) {
+    this.request = request;
   }
 
-  async teardown() {
-    if (this.page) {
-      await this.page.close();
+  async httpRequest(
+    url: string,
+    options: {
+      method: "post" | "get" | "put" | "delete";
+      body?: Record<string, unknown>;
+      token?: string;
     }
-    if (this.browser) {
-      // Проверяем, что экземпляр браузера существует
-      await this.browser.close(); // Закрываем браузер
-    }
-  }
-
-  async get(url: string): Promise<string> {
-    if (!this.page) {
-      throw new Error("Page is not initialized. Call setup() first.");
-    }
-    const response = await this.page.goto(url);
-    if (!response) {
-      throw new Error("Failed to get a response from the API.");
-    }
-    if (response.status() !== 200) {
-      throw new Error(`API request failed with status: ${response.status()}`);
-    }
-    const respObj = await response.json();
-    allure.attachment(
+  ) {
+    const { method, body, token } = options;
+    const headers: Record<string, string> = token
+      ? { Authorization: `Bearer ${token}` }
+      : {};
+    const requestOptions = {
+      headers,
+      data: body,
+    };
+    console.log("headers", headers);
+    const res = await this.request[method](url, requestOptions);
+    await allure.attachment(
       "API Response",
-      JSON.stringify(respObj, null, 2),
+      JSON.stringify(await res.json(), null, 2),
       "text/plain"
     );
-    return respObj;
+    return res.json();
   }
 
-  async post(url: string, data: Record<string, any>): Promise<string> {
-    if (!this.page) {
-      throw new Error("Page is not initialized. Call setup() first.");
-    }
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      return "API request failed with status:";
-    } else {
-      const responseText = await response.text();
-      allure.attachment("API Response", responseText, "text/plain");
-      return responseText;
-    }
+  async postReq(url: string, body: Record<string, unknown>, token?: string) {
+    return this.httpRequest(url, { method: "post", body });
   }
 
-  // Добавляем метод delete
-  async delete(url: string): Promise<void> {
-    if (!this.page) {
-      throw new Error("Page is not initialized. Call setup() first.");
-    }
-    const response = await this.page.evaluate(async (url) => {
-      const response = await fetch(url, { method: "DELETE" });
-      if (!response.ok) {
-        throw new Error(`API request failed with status: ${response.status}`);
-      } else {
-        return await response.text();
-      }
-    }, url);
-    allure.attachment("API Response", response, "text/plain");
+  async getReq(url: string, token?: string) {
+    // console.log(token);
+    return this.httpRequest(url, { method: "get", token });
   }
 }
