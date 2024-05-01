@@ -1,4 +1,4 @@
-import { test } from "./dragAndDrop.fixture";
+import { test } from "../../../pageObjectFixtures/dragAndDrop.fixture";
 
 test("drag drop", async ({ dragAndDrop }) => {
   await dragAndDrop.open();

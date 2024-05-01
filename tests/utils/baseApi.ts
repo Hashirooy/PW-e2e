@@ -24,14 +24,13 @@ export class BaseApi {
       headers,
       data: body,
     };
-    console.log("headers", headers);
     const res = await this.request[method](url, requestOptions);
     await allure.attachment(
       "API Response",
       JSON.stringify(await res.json(), null, 2),
       "text/plain"
     );
-    return res.json();
+    return await res.json();
   }
 
   async postReq(url: string, body: Record<string, unknown>, token?: string) {

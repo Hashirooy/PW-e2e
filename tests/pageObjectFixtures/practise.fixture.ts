@@ -1,4 +1,4 @@
-import { PractisePage } from "../../../pageObjects/pages/practisePage";
+import { PractisePage } from "../pageObjects/pages/practisePage";
 import { test as base, Page } from "@playwright/test";
 
 type TestFixtures = {

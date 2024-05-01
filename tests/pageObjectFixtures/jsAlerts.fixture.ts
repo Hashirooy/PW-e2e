@@ -1,4 +1,4 @@
-import { JsAlerts } from "../../../pageObjects/pages/jsAlertsPage";
+import { JsAlerts } from "../pageObjects/pages/jsAlertsPage";
 import { test as base } from "@playwright/test";
 
 type TestFixtures = {

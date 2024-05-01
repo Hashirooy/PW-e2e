@@ -1,6 +1,6 @@
-import { InventoryPage } from "../../../pageObjects/pages/InventoryPage";
+import { InventoryPage } from "../pageObjects/pages/InventoryPage";
 import { test as base, Page } from "@playwright/test";
-import { LoginPage } from "../../../pageObjects/pages/LoginPage";
+import { LoginPage } from "../pageObjects/pages/LoginPage";
 
 type TestFixtures = {
   inventoryPage: InventoryPage;

@@ -1,4 +1,4 @@
-import { test } from "./inventore.fixture";
+import { test } from "../../../pageObjectFixtures/inventore.fixture";
 
 test("open backpack", async ({ inventoryPage, loginPage, page }) => {
   await loginPage.open();

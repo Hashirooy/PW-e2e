@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { test } from "./login.fixture";
+import { test } from "../../../pageObjectFixtures/login.fixture";
 
 test.describe("Negative Login test", async () => {
   test("logIn without login", async ({ loginPage }) => {

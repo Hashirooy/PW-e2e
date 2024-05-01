@@ -20,7 +20,7 @@ export class UsersService extends BaseApi {
       "https://freefakeapi.io/authapi/users",
       this.token
     );
-
+    console.log("users", res);
     return res;
   }
 }

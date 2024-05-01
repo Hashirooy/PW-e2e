@@ -1,7 +1,7 @@
-import { CartPage } from "../../../pageObjects/pages/CartPage";
-import { InventoryPage } from "../../../pageObjects/pages/InventoryPage";
-import { LoginPage } from "../../../pageObjects/pages/LoginPage";
-import { ProductPage } from "../../../pageObjects/pages/ProductPage";
+import { CartPage } from "../pageObjects/pages/CartPage";
+import { InventoryPage } from "../pageObjects/pages/InventoryPage";
+import { LoginPage } from "../pageObjects/pages/LoginPage";
+import { ProductPage } from "../pageObjects/pages/ProductPage";
 
 import { test as base } from "@playwright/test";
 
