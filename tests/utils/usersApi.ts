@@ -1,25 +1,26 @@
-import { Page, test, expect } from "@playwright/test";
-import { BaseApiTest } from "./baseApi";
+import { Page, test, expect, APIRequestContext } from "@playwright/test";
+import { BaseApi } from "./baseApi";
 
-export class UsersApi extends BaseApiTest {
-  async getUserList() {
-    await this.setup();
-    const response = await this.get("https://freefakeapi.io/authapi/users");
-    await this.teardown();
-    return response;
+export class UsersService extends BaseApi {
+  private token: string;
+  constructor(request: APIRequestContext) {
+    super(request);
   }
 
-  async getSingleUser(userId: string) {
-    await this.setup();
-    const response = await this.get(
-      "https://freefakeapi.io/authapi/users/" + userId
-    );
-    await this.teardown();
-  }
-
-  async CheckNumerOfUsers(expectNumber: number, factualnumber: number) {
-    test.step("Проверяем число юзеров", async () => {
-      expect(expectNumber).toEqual(factualnumber);
+  async getToken() {
+    const res = await this.postReq("https://freefakeapi.io/authapi/login", {
+      username: "MikePayne",
+      password: "myBeaut1fu11P@ssW0rd!",
     });
+    this.token = res.token;
+  }
+
+  async getUserList() {
+    const res = await this.getReq(
+      "https://freefakeapi.io/authapi/users",
+      this.token
+    );
+
+    return res;
   }
 }
