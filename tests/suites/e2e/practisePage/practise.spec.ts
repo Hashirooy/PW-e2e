@@ -1,4 +1,4 @@
-import { test } from "./practise.fixture";
+import { test } from "../../../pageObjectFixtures/practise.fixture";
 
 test("upload file", async ({ practisePage }) => {
   await practisePage.open();

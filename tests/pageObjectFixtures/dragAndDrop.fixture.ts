@@ -1,4 +1,4 @@
-import { DradAndDropPage } from "../../../pageObjects/pages/DragAndDropPage";
+import { DradAndDropPage } from "../pageObjects/pages/DragAndDropPage";
 import { test as base, Page } from "@playwright/test";
 
 type TestFixtures = {

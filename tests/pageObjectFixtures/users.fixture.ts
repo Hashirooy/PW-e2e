@@ -1,5 +1,5 @@
 import { test as base } from "@playwright/test";
-import { UsersService } from "../../../utils/usersApi";
+import { UsersService } from "../utils/usersApi";
 
 type TestFixture = {
   usersApi: UsersService;

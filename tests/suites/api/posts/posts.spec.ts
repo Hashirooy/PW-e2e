@@ -1,10 +1,7 @@
-// import { test } from "./posts.fixture";
+import { test } from "../../../pageObjectFixtures/posts.fixture";
 
-// test("get posts list", async ({ postsApi }) => {
-//   const postsList = await postsApi.getPostList();
-//   await postsApi.checkNumberofPosts(postsList.length, 16);
-// });
-
-// test("delete posts", async ({ postsApi }) => {
-//   await postsApi.deletePosts("3");
-// });
+test.only("get posts list", async ({ postsApi }) => {
+  await postsApi.getToken();
+  const postsList = await postsApi.getListOfPosts();
+  //   await postsApi.checkNumberofPosts(postsList.length, 16);
+});

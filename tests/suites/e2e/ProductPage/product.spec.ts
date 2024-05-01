@@ -1,5 +1,5 @@
 import { describe } from "node:test";
-import { test } from "./product.fixture";
+import { test } from "../../../pageObjectFixtures/product.fixture";
 
 test("add product", async ({ inventoryPage, loginPage, productPage, page }) => {
   await loginPage.open();

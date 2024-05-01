@@ -1,1 +1,1 @@
-[{"uid":"3e697524ee8819bc","name":"get token","time":{"start":1714561456712,"stop":1714561457785,"duration":1073},"status":"passed","severity":"normal"}]
+[{"uid":"4e5d0a9ed93c4c0f","name":"get posts list","time":{"start":1714590950390,"stop":1714590952095,"duration":1705},"status":"passed","severity":"normal"},{"uid":"e5fd5f930b662530","name":"get token","time":{"start":1714590950390,"stop":1714590952093,"duration":1703},"status":"passed","severity":"normal"}]

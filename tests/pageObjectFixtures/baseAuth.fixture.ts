@@ -1,4 +1,4 @@
-import { BaseAuthPage } from "../../../pageObjects/pages/BaseAuthPage";
+import { BaseAuthPage } from "../pageObjects/pages/BaseAuthPage";
 import { test as base } from "@playwright/test";
 
 type TestFixtures = {
