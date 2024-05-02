@@ -34,7 +34,7 @@ export class BaseApi {
   }
 
   async postReq(url: string, body: Record<string, unknown>, token?: string) {
-    return this.httpRequest(url, { method: "post", body });
+    return this.httpRequest(url, { method: "post", body, token });
   }
 
   async getReq(url: string, token?: string) {
