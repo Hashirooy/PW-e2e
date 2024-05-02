@@ -2,22 +2,14 @@ import { BaseApi } from "./baseApi";
 import { test, expect, APIRequestContext } from "@playwright/test";
 
 export class PostsService extends BaseApi {
-  private token: string;
   constructor(request: APIRequestContext) {
     super(request);
   }
-  async getToken() {
-    const res = await this.postReq("https://freefakeapi.io/authapi/login", {
-      username: "MikePayne",
-      password: "myBeaut1fu11P@ssW0rd!",
-    });
-    this.token = res.token;
-  }
 
-  async getListOfPosts() {
+  async getListOfPosts(token: string) {
     const res = await this.getReq(
       "https://freefakeapi.io/authapi/posts",
-      this.token
+      token
     );
     console.log("posts", res);
     return res;

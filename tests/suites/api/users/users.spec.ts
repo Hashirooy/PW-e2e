@@ -1,6 +1,5 @@
 import { test } from "../../../pageObjectFixtures/users.fixture";
 
-test.only("get token", async ({ usersApi }) => {
-  await usersApi.getToken();
+test("get token", async ({ usersApi }) => {
   await usersApi.getUserList();
 });
