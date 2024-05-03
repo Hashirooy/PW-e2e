@@ -1,3 +1,4 @@
+import { validatePosts } from "../../source/schemas/postsSchema";
 import { BaseApi } from "./baseApi";
 import { test, expect, APIRequestContext } from "@playwright/test";
 
