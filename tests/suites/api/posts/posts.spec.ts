@@ -1,3 +1,4 @@
+import { validatePosts } from "../../../../source/schemas/postsSchema";
 import { test } from "../../../pageObjectFixtures/posts.fixture";
 
 test.describe("Posts test list", async () => {
@@ -9,8 +10,12 @@ test.describe("Posts test list", async () => {
     });
     token = res.token;
   });
-  test.only("get posts of list posts", async ({ postsApi }) => {
+  test("get posts of list posts", async ({ postsApi }) => {
     const postsList = await postsApi.getListOfPosts(token);
     await postsApi.checkNumberofPosts(postsList.length, 16);
+  });
+  test("validateschema", async ({ postsApi }) => {
+    const res = await postsApi.getListOfPosts(token);
+    validatePosts(res);
   });
 });

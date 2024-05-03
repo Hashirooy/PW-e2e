@@ -1,3 +1,4 @@
+import { validatePosts } from "../../../../source/schemas/postsSchema";
 import { test } from "../../../pageObjectFixtures/users.fixture";
 
 test.describe("get token", async () => {
@@ -11,6 +12,11 @@ test.describe("get token", async () => {
   });
 
   test.only("get list of users", async ({ usersApi }) => {
-    await usersApi.getUserList(token);
+    const res = await usersApi.getUserList(token);
+    await usersApi.validateSchema(token);
+  });
+
+  test.only("validate schema", async ({ usersApi }) => {
+    await usersApi.validateSchema(token);
   });
 });
