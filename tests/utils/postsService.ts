@@ -11,7 +11,6 @@ export class PostsService extends BaseApi {
       "https://freefakeapi.io/authapi/posts",
       token
     );
-    console.log("posts", res);
     return res;
   }
   // methods for cheking

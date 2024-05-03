@@ -8,7 +8,6 @@ test.describe("Posts test list", async () => {
       password: "myBeaut1fu11P@ssW0rd!",
     });
     token = res.token;
-    console.log("CHECK", res);
   });
   test.only("get posts of list posts", async ({ postsApi }) => {
     const postsList = await postsApi.getListOfPosts(token);
