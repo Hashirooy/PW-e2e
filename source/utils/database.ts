@@ -5,26 +5,26 @@ import { Sequelize, DataTypes } from "sequelize";
 import config from "../../config.json" assert { type: "json" };
 import { User } from "../types/user";
 
-export const initializationDataBase = () => {
-  const sequelize = new Sequelize(
-    config.development.database,
-    config.development.username,
-    config.development.password,
-    {
-      host: config.development.host,
-      dialect: "postgres",
-    }
-  );
+// export const initializationDataBase = () => {
+//   const sequelize = new Sequelize(
+//     config.development.database,
+//     config.development.username,
+//     config.development.password,
+//     {
+//       host: config.development.host,
+//       dialect: "postgres",
+//     }
+//   );
 
-  sequelize
-    .authenticate()
-    .then(() => {
-      console.log("Соединение с базой данных установлено успешно.");
-    })
-    .catch((err) => {
-      console.error("Ошибка соединения с базой данных:", err);
-    });
-};
+//   sequelize
+//     .authenticate()
+//     .then(() => {
+//       console.log("Соединение с базой данных установлено успешно.");
+//     })
+//     .catch((err) => {
+//       console.error("Ошибка соединения с базой данных:", err);
+//     });
+// };
 
 export async function getClients(user_id): Promise<User | undefined> {
   const sequelize = new Sequelize(

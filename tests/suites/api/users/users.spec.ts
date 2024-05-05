@@ -11,12 +11,12 @@ test.describe("get token", async () => {
     token = res.token;
   });
 
-  test.only("get list of users", async ({ usersApi }) => {
+  test("get list of users", async ({ usersApi }) => {
     const res = await usersApi.getUserList(token);
     await usersApi.validateSchema(token);
   });
 
-  test.only("validate schema", async ({ usersApi }) => {
+  test("validate schema", async ({ usersApi }) => {
     await usersApi.validateSchema(token);
   });
 });

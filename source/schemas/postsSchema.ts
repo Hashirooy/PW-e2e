@@ -10,7 +10,7 @@ const postsSchema = {
     type: "object",
     properties: {
       id: {
-        type: "integer",
+        type: "string",
         description: "Unique identifier for the article",
       },
       title: {

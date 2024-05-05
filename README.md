@@ -1,4 +1,4 @@
-# todoList-e2e
+# playwright-e2e
 
 ## Some information about project
 
