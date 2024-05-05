@@ -1,5 +1,5 @@
 import { log } from "console";
-import { test } from "../../../../source/pageObjectFixtures/cart.fixture";
+import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
 
 test("Нахад к покупкам", async ({
   loginPage,

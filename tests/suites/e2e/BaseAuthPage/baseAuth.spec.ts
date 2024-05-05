@@ -1,4 +1,4 @@
-import { test } from "../../../../source/pageObjectFixtures/baseAuth.fixture";
+import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
 
 test("base authization", async ({ baseAuth }) => {
   await baseAuth.open();

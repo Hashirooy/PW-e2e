@@ -1,5 +1,5 @@
 import { validatePosts } from "../../../../source/schemas/postsSchema";
-import { test } from "../../../../source/pageObjectFixtures/users.fixture";
+import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
 
 test.describe("get token", async () => {
   let token: string;
