@@ -32,9 +32,88 @@ npm install -g allure-commandline
 
 ```
 
-## Run tests and generete allure reports
+## Api reference
 
-Use this command for starting all tests:
+### BaseAPi
+
+This class contain all base methods to work with requests.
+The main method is httpRequst. It's get 2 parameters(url, options). The option comprises of 3 patameters(method, body, token).
+
+Methods postReq and getReq was implemented to work with server.They invoke httpRequest for sending and working with API.
+
+### Posts
+
+#### Get all Posts
+
+Get the full list of posts provided by the API.
+Response
+Response with 200 OKstatus and the collection.
+
+```http
+  GET https://freefakeapi.io/authapi/posts
+```
+
+| Parameter                                                  | Type | Description |
+| :--------------------------------------------------------- | :--- | :---------- |
+| Nothing in the request body, the get request MUST be empty |
+
+#### Get item
+
+Get a single post resource provided by the API.
+
+Parameters
+Replace {id} in the url by the id of the post you want to get, like /authapi/posts/3
+
+Nothing in the request body, the get request MUST be empty
+
+Response with 200 OK status and the resource.
+
+```http
+  GET https://freefakeapi.io/authapi/posts/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+### Users
+
+#### Get all Users
+
+Get the full list of posts provided by the API.
+Response
+Response with 200 OKstatus and the collection.
+
+```http
+  GET https://freefakeapi.io/authapi/users
+```
+
+| Parameter                                                  | Type | Description |
+| :--------------------------------------------------------- | :--- | :---------- |
+| Nothing in the request body, the get request MUST be empty |
+
+#### Get user
+
+Get a single post resource provided by the API.
+
+Parameters
+Replace {id} in the url by the id of the post you want to get, like /authapi/users/3
+
+Nothing in the request body, the get request MUST be empty
+
+Response with 200 OK status and the resource.
+
+```http
+  GET https://freefakeapi.io/authapi/users/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+## Running Tests
+
+To run tests, run the following command
 
 ```
 npm run e2e
