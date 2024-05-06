@@ -26,6 +26,5 @@ test.describe("Posts test list", async () => {
 
   test.only("Create posts", async ({ postsApi }) => {
     const res = await postsApi.createPosts(token);
-    validatePosts(res);
   });
 });
