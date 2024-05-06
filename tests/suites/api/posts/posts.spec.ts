@@ -14,8 +14,18 @@ test.describe("Posts test list", async () => {
     const postsList = await postsApi.getListOfPosts(token);
     await postsApi.checkNumberofPosts(postsList.length, 16);
   });
-  test("validateschema", async ({ postsApi }) => {
+  test("validate schema", async ({ postsApi }) => {
     const res = await postsApi.getListOfPosts(token);
+    validatePosts(res);
+  });
+
+  test("Check limited posts", async ({ postsApi }) => {
+    const limitedListPosts = await postsApi.getLimitedListOfPosts(6, token);
+    await postsApi.checkNumberofPosts(limitedListPosts.length, 6);
+  });
+
+  test.only("Create posts", async ({ postsApi }) => {
+    const res = await postsApi.createPosts(token);
     validatePosts(res);
   });
 });
