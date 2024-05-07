@@ -44,6 +44,15 @@ export class LoginPage extends BasePage {
         );
         await this.clickLoginButton();
       });
+    } else {
+      await test.step("Вход на сайт", async () => {
+        await this.fillElement(this.loginField, Users.standart_user.login);
+        await this.fillElement(
+          this.passwordField,
+          Users.standart_user.password
+        );
+        await this.clickLoginButton();
+      });
     }
   }
 
