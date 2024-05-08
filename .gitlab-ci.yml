@@ -24,6 +24,6 @@ job_test:
     - npx playwright install
     - npx playwright install-deps
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
-  When: on_failure
+  when: on_failure
   after_script:
     - node source/utils/cibot.js
