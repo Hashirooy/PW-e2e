@@ -6,6 +6,7 @@ image: mcr.microsoft.com/playwright:v1.44.0-jammy
 stages:
   - build
   - test
+  - tgMessageIffail
 
 job_build:
   stage: build
@@ -24,6 +25,8 @@ job_test:
     - npx playwright install
     - npx playwright install-deps
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
+
+job_onFail:
   when: on_failure
   after_script:
     - node source/utils/cibot.js
