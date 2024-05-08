@@ -24,7 +24,7 @@ test.describe("Posts test list", async () => {
     await postsApi.checkNumberofPosts(limitedListPosts.length, 6);
   });
 
-  test.only("Create posts", async ({ postsApi }) => {
+  test("Create posts", async ({ postsApi }) => {
     const res = await postsApi.createPosts(token);
   });
 });
