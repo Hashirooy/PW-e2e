@@ -27,6 +27,6 @@ job_test:
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
 
 job_onFail:
+  stage: tgMessageIffail
   when: on_failure
-  after_script:
-    - node source/utils/cibot.js
+  script: node source/utils/cibot.js
