@@ -34,8 +34,6 @@ job_test:
     - echo $CI_NODE_INDEX
     - echo $CI_NODE_TOTAL
     - npm i
-    - npm install -g typescript
-    - npx playwright install-deps 
     - npx playwright install
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
 
