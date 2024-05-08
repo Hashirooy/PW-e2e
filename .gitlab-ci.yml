@@ -31,4 +31,4 @@ job_onFail:
   when: on_failure
   script: 
     - npm install
-    - node source/utils/cibot.js
+    - node source/utils/cibot.ts
