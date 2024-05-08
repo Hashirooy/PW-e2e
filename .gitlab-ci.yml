@@ -33,6 +33,7 @@ job_test:
     - echo "Running tests"
     - echo $CI_NODE_INDEX
     - echo $CI_NODE_TOTAL
+    - npm install
     - npm i
     - npx playwright install-deps 
     - npx playwright install
