@@ -25,4 +25,3 @@ job_test:
     - npx playwright install
     - npx playwright install-deps
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
-    - node source/utils/cibot.ts
