@@ -26,7 +26,6 @@ export class BasePage {
   async getListOfelements(locator) {
     await test.step("Получить число объектов", async () => {
       const elements = await locator.all();
-      // console.log(elements.length);
       return elements.length;
     });
   }

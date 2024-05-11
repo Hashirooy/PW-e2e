@@ -1,9 +1,8 @@
 import Ajv from "ajv";
-import { test, expect } from "@playwright/test";
 
 const ajv = new Ajv();
 
-const usersSchema = {
+export const usersSchema = {
   $schema: "http://json-schema.org/draft-07/schema#",
   type: "array",
   items: {
@@ -44,11 +43,4 @@ const usersSchema = {
     },
     required: ["id", "username", "email", "session", "_links"],
   },
-};
-
-export const validateUsers = (data) => {
-  const validate = ajv.compile(usersSchema);
-  const valid = validate(data);
-  if (!valid) console.log("WRONG SCHEMA", validate.errors);
-  return valid;
 };

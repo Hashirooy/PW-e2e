@@ -30,7 +30,11 @@ export class BaseApi {
       JSON.stringify(await res.json(), null, 2),
       "text/plain"
     );
-    return await res.json();
+    const responseBody = await res.json();
+
+    // Получаем заголовки ответа
+    const response = { body: responseBody, header: res };
+    return response;
   }
 
   async postReq(url: string, body: Record<string, unknown>, token?: string) {
@@ -38,7 +42,6 @@ export class BaseApi {
   }
 
   async getReq(url: string, token?: string) {
-    // console.log(token);
     return this.httpRequest(url, { method: "get", token });
   }
 }

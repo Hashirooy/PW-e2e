@@ -1,5 +1,6 @@
-import { validatePosts } from "../../../../source/schemas/postsSchema";
 import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
+import { postsSchema } from "../../../../source/schemas/postsSchema";
+import { schemaValidate } from "../../../../source/schemas/schemaValidate";
 
 test.describe("Posts test list", async () => {
   let token: string;
@@ -8,7 +9,7 @@ test.describe("Posts test list", async () => {
       username: "MikePayne",
       password: "myBeaut1fu11P@ssW0rd!",
     });
-    token = res.token;
+    token = res.body.token;
   });
   test("get posts of list posts", async ({ postsApi }) => {
     const postsList = await postsApi.getListOfPosts(token);
@@ -16,7 +17,7 @@ test.describe("Posts test list", async () => {
   });
   test("validate schema", async ({ postsApi }) => {
     const res = await postsApi.getListOfPosts(token);
-    validatePosts(res);
+    schemaValidate(res, postsSchema);
   });
 
   test("Check limited posts", async ({ postsApi }) => {
@@ -24,7 +25,7 @@ test.describe("Posts test list", async () => {
     await postsApi.checkNumberofPosts(limitedListPosts.length, 6);
   });
 
-  test.only("Create posts", async ({ postsApi }) => {
+  test("Create posts", async ({ postsApi }) => {
     const res = await postsApi.createPosts(token);
   });
 });

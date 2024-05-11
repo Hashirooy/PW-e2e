@@ -1,24 +1,12 @@
 variables:
   NPM_TOKEN: "test"
 
-image: mcr.microsoft.com/playwright:bionic
+image: mcr.microsoft.com/playwright:v1.44.0-jammy
 
 stages:
-  - setup
   - build
   - test
-
-setup:
-  stage: setup
-  script:
-    # Установка nvm
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    - export NVM_DIR="$HOME/.nvm"
-    - source "$NVM_DIR/nvm.sh"
-    # Установка последней версии Node.js
-    - nvm install node
-    - node --version
-    - npm --version
+  - tgMessageIffail
 
 job_build:
   stage: build
@@ -33,7 +21,7 @@ job_test:
     - echo "Running tests"
     - echo $CI_NODE_INDEX
     - echo $CI_NODE_TOTAL
-    - npm i
+    - npm ci
     - npx playwright install
+    - npx playwright install-deps
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
-

@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 
 const ajv = new Ajv();
 
-const postsSchema = {
+export const postsSchema = {
   $schema: "http://json-schema.org/draft-07/schema#",
   type: "array",
   items: {
@@ -72,13 +72,4 @@ const postsSchema = {
     },
     required: ["id", "title", "content", "slug", "picture", "user", "_links"],
   },
-};
-
-export const validatePosts = (data) => {
-  test.step("check schema", async () => {
-    const validate = ajv.compile(postsSchema);
-    const valid = validate(data);
-    //  if (!valid) console.log("WRONG SCHEMA", validate.errors);
-    expect(valid).toBeTruthy();
-  });
 };
