@@ -1,26 +1,26 @@
 import TelegramBot from "node-telegram-bot-api";
 
-const token = "7029758520:AAGQRk-50pLHZx-10JR_fBy0KMLU06rw43M";
+const token = "";
 // const chatId = "ID_ВАШЕГО_ЧАТА";
 
-const bot = new TelegramBot(token, {
-  polling: true,
-});
+// const bot = new TelegramBot(token, {
+//   polling: true,
+// });
 
-// function sendMessage(message) {
-//   bot.sendMessage(chatId, message);
-// }
+// // function sendMessage(message) {
+// //   bot.sendMessage(chatId, message);
+// // }
 
-bot.getChat(861573759).then((chat) => {
-  console.log(chat.id);
-});
+// bot.getChat().then((chat) => {
+//   console.log(chat.id);
+// });
 
-const message = "Чек ci/cd";
+// const message = "Чек ci/cd";
 
-bot
-  .sendMessage(670053700, message)
-  .then(() => console.log("Сообщение отправлено"))
-  .catch((error) => console.error("Ошибка при отправке сообщения:", error));
+// bot
+//   .sendMessage(, message)
+//   .then(() => console.log("Сообщение отправлено"))
+//   .catch((error) => console.error("Ошибка при отправке сообщения:", error));
 
 // bot.on("message", (msg) => {
 //   const chatId = msg.chat.id;
