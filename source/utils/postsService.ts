@@ -1,4 +1,3 @@
-import { validatePosts } from "../../source/schemas/postsSchema";
 import { BaseApi } from "./baseApi";
 import { test, expect, APIRequestContext } from "@playwright/test";
 import { generatePostData } from "./postsGenerator";
@@ -11,18 +10,18 @@ export class PostsService extends BaseApi {
 
   async getListOfPosts(token: string) {
     const res = await this.getReq(this.url, token);
-    return res;
+    return res.body;
   }
 
   async getLimitedListOfPosts(limitNumber: number, token: string) {
     const res = await this.getReq(this.url + `?limit=${limitNumber}`, token);
-    return res;
+    return res.body;
   }
 
   async createPosts(token: string) {
     const body = generatePostData();
     const res = await this.postReq(this.url, body, token);
-    return res;
+    return res.body;
   }
   // methods for cheking
   async checkNumberofPosts(factualNumber: number, expectNumber: number) {

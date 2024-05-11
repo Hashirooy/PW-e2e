@@ -1,5 +1,6 @@
-import { validatePosts } from "../../../../source/schemas/postsSchema";
 import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
+import { schemaValidate } from "../../../../source/schemas/schemaValidate";
+import { usersSchema } from "../../../../source/schemas/usersSchema";
 
 test.describe("get token", async () => {
   let token: string;
@@ -8,15 +9,20 @@ test.describe("get token", async () => {
       username: "MikePayne",
       password: "myBeaut1fu11P@ssW0rd!",
     });
-    token = res.token;
+    token = res.body.token;
+  });
+  test("check status 200 OK", async ({ usersApi }) => {
+    const res = await usersApi.getUserList(token);
+    await usersApi.checkStatusCode(res.header.status(), 200);
   });
 
   test("get list of users", async ({ usersApi }) => {
     const res = await usersApi.getUserList(token);
-    await usersApi.validateSchema(token);
+    await usersApi.checkListOfUsers(res.body.length, 10);
   });
 
   test("validate schema", async ({ usersApi }) => {
-    await usersApi.validateSchema(token);
+    const res = await usersApi.getUserList(token);
+    schemaValidate(res.body, usersSchema);
   });
 });

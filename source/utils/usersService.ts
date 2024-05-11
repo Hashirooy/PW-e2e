@@ -1,6 +1,5 @@
 import { Page, test, expect, APIRequestContext } from "@playwright/test";
 import { BaseApi } from "./baseApi";
-import { validateUsers } from "../../source/schemas/usersSchema";
 
 export class UsersService extends BaseApi {
   constructor(request: APIRequestContext) {
@@ -12,17 +11,17 @@ export class UsersService extends BaseApi {
       "https://freefakeapi.io/authapi/users",
       token
     );
-
     return res;
   }
 
-  async validateSchema(token: string) {
-    const res = await this.getReq(
-      "https://freefakeapi.io/authapi/users",
-      token
-    );
-    test.step("validate schema", async () => {
-      expect(validateUsers(res)).toBeTruthy();
+  async checkListOfUsers(factualnumber: number, expectedNumber: number) {
+    test.step("check number of users", async () => {
+      expect(factualnumber).toEqual(expectedNumber);
+    });
+  }
+  async checkStatusCode(factualStatus: number, expectStatus: number) {
+    test.step("Check status response status code", async () => {
+      expect(factualStatus).toEqual(expectStatus);
     });
   }
 }
