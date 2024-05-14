@@ -6,7 +6,7 @@ image: mcr.microsoft.com/playwright:v1.44.0-jammy
 stages:
   - build
   - test
-  - tgMessageIffail
+  - allureDeploy
 
 job_build:
   stage: build
@@ -25,3 +25,14 @@ job_test:
     - npx playwright install
     - npx playwright install-deps
     - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
+    - npm run allure
+  artifacts:
+    paths:
+      - allure-report/
+
+job_allureDeploy:
+  stage: allureDeploy
+  script:
+    - allure serve allure-report/ # Публикация отчетов Allure
+  only:
+    - master
