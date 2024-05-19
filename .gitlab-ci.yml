@@ -16,23 +16,35 @@ job_build:
 job_test:
   # image: node:latest
   stage: test
-  parallel: 2
+  before_script:
+    - apt-get update -y && apt-get install -y openjdk-11-jdk
   script:
     - echo "Running tests"
     - echo $CI_NODE_INDEX
     - echo $CI_NODE_TOTAL
+    - npm install -g allure-commandline
     - npm ci
     - npx playwright install
     - npx playwright install-deps
-    - npm run e2e -- --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
-    - npm run allure
+    - java -version
+    - npm run e2e
+    - allure generate --clean -o allure-report # Генерация отчетов Allure
   artifacts:
     paths:
       - allure-report/
 
-job_allureDeploy:
+pages:
   stage: allureDeploy
+  needs:
+    - job_test
+  before_script:
+    - apt-get update -y && apt-get install -y openjdk-11-jdk
   script:
-    - allure serve allure-report/ # Публикация отчетов Allure
-  only:
-    - master
+    - mkdir public
+    - cp -r allure-report/* public
+  artifacts:
+    when: on_success
+    access: all
+    expire_in: never
+    paths:
+      - public
