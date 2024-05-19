@@ -1,0 +1,50 @@
+variables:
+  NPM_TOKEN: "test"
+
+image: mcr.microsoft.com/playwright:v1.44.0-jammy
+
+stages:
+  - build
+  - test
+  - allureDeploy
+
+job_build:
+  stage: build
+  script:
+    - echo "Building the project"
+
+job_test:
+  # image: node:latest
+  stage: test
+  before_script:
+    - apt-get update -y && apt-get install -y openjdk-11-jdk
+  script:
+    - echo "Running tests"
+    - echo $CI_NODE_INDEX
+    - echo $CI_NODE_TOTAL
+    - npm install -g allure-commandline
+    - npm ci
+    - npx playwright install
+    - npx playwright install-deps
+    - java -version
+    - npm run e2e
+    - allure generate --clean -o allure-report # Генерация отчетов Allure
+  artifacts:
+    paths:
+      - allure-report/
+
+pages:
+  stage: allureDeploy
+  needs:
+    - job_test
+  before_script:
+    - apt-get update -y && apt-get install -y openjdk-11-jdk
+  script:
+    - mkdir public
+    - cp -r allure-report/* public
+  artifacts:
+    when: on_success
+    access: all
+    expire_in: never
+    paths:
+      - public
