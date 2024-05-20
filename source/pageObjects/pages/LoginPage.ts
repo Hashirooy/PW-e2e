@@ -2,7 +2,7 @@ import { Page, test, expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { allure } from "allure-playwright";
 import { Users } from "../../testData/user";
-import { getClients } from "../../utils/database";
+import { getClients } from "../../utils/db/database";
 
 export class LoginPage extends BasePage {
   readonly loginField = this.page.locator("[id=user-name]");

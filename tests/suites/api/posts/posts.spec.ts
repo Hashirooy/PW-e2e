@@ -28,4 +28,9 @@ test.describe("Posts test list", async () => {
   test("Create posts", async ({ postsApi }) => {
     const res = await postsApi.createPosts(token);
   });
+
+  test("Update post", async ({ postsApi }) => {
+    const res = await postsApi.upDatePost(token, "103");
+    await postsApi.checkStatusCode(res.header.status(), 201);
+  });
 });

@@ -2,8 +2,8 @@
 // const config = require("../../config.json");
 
 import { Sequelize, DataTypes } from "sequelize";
-import config from "../../config.json" assert { type: "json" };
-import { User } from "../types/user";
+import config from "../../../config.json" assert { type: "json" };
+import { User } from "../../types/user";
 
 // export const initializationDataBase = () => {
 //   const sequelize = new Sequelize(
