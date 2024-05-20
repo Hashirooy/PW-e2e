@@ -5,9 +5,9 @@ import { InventoryPage } from "../pageObjects/pages/InventoryPage";
 import { LoginPage } from "../pageObjects/pages/LoginPage";
 import { ProductPage } from "../pageObjects/pages/ProductPage";
 import { DradAndDropPage } from "../pageObjects/pages/DragAndDropPage";
-import { PostsService } from "../utils/postsService";
+import { PostsService } from "../utils/api/postsService";
 import { PractisePage } from "../pageObjects/pages/practisePage";
-import { UsersService } from "../utils/usersService";
+import { UsersService } from "../utils/api/usersService";
 
 type TestFixtures = {
   baseAuth: BaseAuthPage;

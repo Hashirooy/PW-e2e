@@ -1,4 +1,5 @@
 export function generatePostData(): {
+  id?: string;
   title: string;
   content: string;
   slug: string;

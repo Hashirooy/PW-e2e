@@ -1,5 +1,5 @@
-import { describe } from "node:test";
-import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
+// import { describe } from "node:test";
+// import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
 
 // test("add product", async ({ inventoryPage, loginPage, productPage, page }) => {
 //   await loginPage.open();
