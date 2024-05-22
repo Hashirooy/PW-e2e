@@ -34,6 +34,8 @@ test.describe("Negative Login test", async () => {
 });
 
 test("Correct login on site", async ({ loginPage }) => {
+  await allure.epic("Web interface");
+  await allure.feature("UI features");
   await loginPage.open();
   await loginPage.typeLoginField("standard_user");
   await loginPage.typePasswordField("secret_sauce");

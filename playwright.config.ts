@@ -12,7 +12,20 @@ import { testPlanFilter } from "allure-playwright/dist/testplan.js";
  */
 export default defineConfig({
   grep: testPlanFilter(),
-  reporter: [["line"], ["allure-playwright"]],
+  reporter: [
+    ["line"],
+    [
+      "allure-playwright",
+      {
+        detail: true,
+        outputFolder: "allure-results",
+        suiteTitle: true,
+        environmentInfo: {
+          framework: "playwright",
+        },
+      },
+    ],
+  ],
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,

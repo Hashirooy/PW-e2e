@@ -8,6 +8,8 @@ import { DradAndDropPage } from "../pageObjects/pages/DragAndDropPage";
 import { PostsService } from "../utils/api/postsService";
 import { PractisePage } from "../pageObjects/pages/practisePage";
 import { UsersService } from "../utils/api/usersService";
+import { CommentService } from "../utils/api/commentService";
+import { request } from "http";
 
 type TestFixtures = {
   baseAuth: BaseAuthPage;
@@ -19,6 +21,7 @@ type TestFixtures = {
   postsApi: PostsService;
   practisePage: PractisePage;
   usersApi: UsersService;
+  commentsApi: CommentService;
 };
 
 export const test = base.extend<TestFixtures>({
@@ -58,5 +61,9 @@ export const test = base.extend<TestFixtures>({
   usersApi: async ({ request }, use) => {
     const usersApi = new UsersService(request);
     use(usersApi);
+  },
+  commentsApi: async ({ request }, use) => {
+    const commentsApi = new CommentService(request);
+    await use(commentsApi);
   },
 });
