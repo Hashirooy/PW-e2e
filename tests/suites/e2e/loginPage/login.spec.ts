@@ -1,14 +1,19 @@
 import { expect } from "@playwright/test";
 import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
+import { allure } from "allure-playwright";
 
 test.describe("Negative Login test", async () => {
   test("logIn without login", async ({ loginPage }) => {
+    await allure.epic("Web interface");
+    await allure.feature("UI features");
     await loginPage.open();
     await loginPage.typePasswordField("secret_sauce");
     await loginPage.clickLoginButton();
     await loginPage.CheckErrorMessage("Epic sadface: Username is required");
   });
   test("Incorrect password", async ({ loginPage }) => {
+    await allure.epic("Web interface");
+    await allure.feature("UI features");
     await loginPage.open();
     await loginPage.typeLoginField("standard_user");
     await loginPage.typePasswordField("sdf234fsdf");
@@ -19,6 +24,8 @@ test.describe("Negative Login test", async () => {
   });
 
   test("logIn without password", async ({ loginPage }) => {
+    await allure.epic("Web interface");
+    await allure.feature("UI features");
     await loginPage.open();
     await loginPage.typeLoginField("standard_user");
     await loginPage.clickLoginButton();

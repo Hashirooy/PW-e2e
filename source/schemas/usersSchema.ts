@@ -44,3 +44,11 @@ export const usersSchema = {
     required: ["id", "username", "email", "session", "_links"],
   },
 };
+
+export type userResp = {
+  id: string;
+  username: string;
+  email: string;
+  session: string;
+  _links: Record<string, string>;
+};
