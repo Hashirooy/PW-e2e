@@ -14,14 +14,17 @@ export const reportParser = async () => {
 };
 
 const sendMessage = async () => {
-  const TELEGRAM_CHAT_ID = "-4200233118";
-  // const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  const TELEGRAM_BOT_TOKEN = "7029758520:AAGQRk-50pLHZx-10JR_fBy0KMLU06rw43M";
-  // const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+  // const TELEGRAM_CHAT_ID = "-4200233118";
+  const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+  // const TELEGRAM_BOT_TOKEN = "7029758520:AAGQRk-50pLHZx-10JR_fBy0KMLU06rw43M";
+  const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
   const report = await reportParser();
-  const message = `New merge request:\n\nTests: ${report.tests}\nPassed: ${report.passed}\nFailed: ${report.failed}`;
-  bot.sendMessage(TELEGRAM_CHAT_ID, message);
+  const message = `New merge request:\n\nTests: ${report.tests}\nPassed: ${report.passed} u\U+2705\nFailed: ${report.failed}`;
+  bot
+    .sendMessage(TELEGRAM_CHAT_ID, message)
+    .then(() => console.log(`Message sent to ${chatId}`))
+    .catch((error) => console.error(error));
   bot.close();
 };
 
