@@ -25,6 +25,7 @@ export default defineConfig({
         },
       },
     ],
+    ["playwright-ctrf-json-reporter", {}],
   ],
   testDir: "./tests",
   /* Run tests in files in parallel */

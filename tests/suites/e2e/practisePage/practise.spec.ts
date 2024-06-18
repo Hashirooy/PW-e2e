@@ -1,10 +1,16 @@
 import { allure } from "allure-playwright";
 import { test } from "../../../../source/pageObjectFixtures/POMFixtures";
 
-test("upload file", async ({ practisePage }) => {
-  await allure.epic("Web interface");
-  await allure.feature("UI features");
-  await practisePage.open();
-  await practisePage.upLoadFile();
-  await practisePage.pause();
+test.describe("Upload Page", async () => {
+  test.describe("Upload file", async () => {
+    test.beforeEach(({ page }, testInfo) => {
+      allure.parentSuite(testInfo.titlePath[testInfo.titlePath.length - 3]);
+      allure.subSuite(testInfo.titlePath[testInfo.titlePath.length - 2]);
+    });
+    test("upload file", async ({ practisePage }) => {
+      await practisePage.open();
+      await practisePage.upLoadFile();
+      await practisePage.pause();
+    });
+  });
 });

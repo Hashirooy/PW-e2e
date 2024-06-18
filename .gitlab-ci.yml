@@ -32,6 +32,10 @@ job_test:
   artifacts:
     paths:
       - allure-report/
+  after_script:
+    - node source/bot/bot.js
+    - chmod +x telegramm-bot.sh
+    - telegramm-bot.sh
 
 pages:
   stage: allureDeploy

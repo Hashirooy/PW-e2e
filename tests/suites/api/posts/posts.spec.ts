@@ -4,44 +4,41 @@ import { postsSchema } from "../../../../source/schemas/postsSchema";
 import { schemaValidate } from "../../../../source/schemas/schemaValidate";
 
 test.describe("Posts test list", async () => {
-  let token: string;
-  test.beforeAll("Get token", async ({ postsApi }) => {
-    const res = await postsApi.postReq("https://freefakeapi.io/authapi/login", {
-      username: "MikePayne",
-      password: "myBeaut1fu11P@ssW0rd!",
+  test.describe("Positive", async () => {
+    let token: string;
+    test.beforeAll("Get token", async ({ postsApi }, testInfo) => {
+      allure.parentSuite(testInfo.titlePath[testInfo.titlePath.length - 3]);
+      allure.subSuite(testInfo.titlePath[testInfo.titlePath.length - 2]);
+      const res = await postsApi.postReq(
+        "https://freefakeapi.io/authapi/login",
+        {
+          username: "MikePayne",
+          password: "myBeaut1fu11P@ssW0rd!",
+        }
+      );
+      token = res.body.token;
     });
-    token = res.body.token;
-  });
-  test("get posts of list posts", async ({ postsApi }) => {
-    await allure.epic("APi interface");
-    await allure.feature("Posts features");
-    const postsList = await postsApi.getListOfPosts(token);
-    await postsApi.checkNumberofPosts(postsList.length, 16);
-  });
-  test("validate schema", async ({ postsApi }) => {
-    await allure.epic("APi interface");
-    await allure.feature("Posts features");
-    const res = await postsApi.getListOfPosts(token);
-    schemaValidate(res, postsSchema);
-  });
+    test("get posts of list posts", async ({ postsApi }) => {
+      const postsList = await postsApi.getListOfPosts(token);
+      await postsApi.checkNumberofPosts(postsList.length, 16);
+    });
+    test("validate schema", async ({ postsApi }) => {
+      const res = await postsApi.getListOfPosts(token);
+      schemaValidate(res, postsSchema);
+    });
 
-  test("Check limited posts", async ({ postsApi }) => {
-    await allure.epic("APi interface");
-    await allure.feature("Posts features");
-    const limitedListPosts = await postsApi.getLimitedListOfPosts(6, token);
-    await postsApi.checkNumberofPosts(limitedListPosts.length, 6);
-  });
+    test("Check limited posts", async ({ postsApi }) => {
+      const limitedListPosts = await postsApi.getLimitedListOfPosts(6, token);
+      await postsApi.checkNumberofPosts(limitedListPosts.length, 6);
+    });
 
-  test("Create posts", async ({ postsApi }) => {
-    await allure.epic("APi interface");
-    await allure.feature("Posts features");
-    const res = await postsApi.createPosts(token);
-  });
+    test("Create posts", async ({ postsApi }) => {
+      const res = await postsApi.createPosts(token);
+    });
 
-  test("Update post", async ({ postsApi }) => {
-    await allure.epic("APi interface");
-    await allure.feature("Posts features");
-    const res = await postsApi.upDatePost(token, "103");
-    await postsApi.checkStatusCode(res.header.status(), 201);
+    test("Update post", async ({ postsApi }) => {
+      const res = await postsApi.upDatePost(token, "103");
+      await postsApi.checkStatusCode(res.header.status(), 201);
+    });
   });
 });
