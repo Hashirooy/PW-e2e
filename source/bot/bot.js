@@ -14,14 +14,13 @@ export const reportParser = async () => {
 };
 
 const sendMessage = async () => {
-  // const TELEGRAM_CHAT_ID = "-4200233118";
   const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  // const TELEGRAM_BOT_TOKEN = "7029758520:AAGQRk-50pLHZx-10JR_fBy0KMLU06rw43M";
   const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-  console.log(TELEGRAM_BOT_TOKEN);
+  const CI_COMMIT_SHA = process.env.CI_COMMIT_SHA;
+  const GITLAB_USER_NAME = process.env.GITLAB_USER_NAME;
   const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
   const report = await reportParser();
-  const message = `New merge request:\n\nTests: ${report.tests}\nPassed: ${report.passed}✅\nFailed: ${report.failed}`;
+  const message = `New commit:${CI_COMMIT_SHA}\nUser: ${GITLAB_USER_NAME}\nTests: ${report.tests}\nPassed: ${report.passed}✅\nFailed: ${report.failed}`;
   bot
     .sendMessage(TELEGRAM_CHAT_ID, message)
     .then(() => bot.close())
