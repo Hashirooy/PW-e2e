@@ -45,7 +45,7 @@ fail_job:
      - chmod +x telegramm-bot.sh
      - telegramm-bot.sh
   when: on_failure
-  needs: ["test_job"]
+  needs: ["job_test"]
 
 pages:
   stage: allureDeploy
