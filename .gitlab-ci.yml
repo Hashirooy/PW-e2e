@@ -6,6 +6,7 @@ image: mcr.microsoft.com/playwright:v1.44.0-jammy
 stages:
   - build
   - test
+  - failCommit
   - allureDeploy
 
 job_build:
@@ -36,6 +37,15 @@ job_test:
     - node source/bot/bot.js
     - chmod +x telegramm-bot.sh
     - telegramm-bot.sh
+
+fail_job:
+  stage: failCommit
+  script:
+    - node source/bot/bot.js
+    - chmod +x telegramm-bot.sh
+    - telegramm-bot.sh
+  when: on_failure
+  needs: ["job_test"]
 
 pages:
   stage: allureDeploy
