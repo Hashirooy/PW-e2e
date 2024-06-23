@@ -38,6 +38,15 @@ job_test:
     - chmod +x telegramm-bot.sh
     - telegramm-bot.sh
 
+fail_job:
+  stage: failCommit
+  script:
+     - node source/bot/bot.js
+     - chmod +x telegramm-bot.sh
+     - telegramm-bot.sh
+  when: on_failure
+  needs: ["job_test"]
+
 pages:
   stage: allureDeploy
   needs:
