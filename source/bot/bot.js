@@ -19,10 +19,11 @@ const sendMessage = async () => {
   const CI_COMMIT_SHA = process.env.CI_COMMIT_SHA;
   const GITLAB_USER_NAME = process.env.GITLAB_USER_NAME;
   const CI_JOB_STATUS = process.env.CI_JOB_STATUS;
-  if (process.env.CI_JOB_STATUS !== "success") {
-    const statusEmoji = "\uD120"; // Эмодзи "🚫", альтернативный вариант для "U+274C"
+  let statusEmoji;
+  if (CI_JOB_STATUS !== "success") {
+    statusEmoji = "\uD120"; // Эмодзи "🚫", альтернативный вариант для "U+274C"
   } else {
-    const statusEmoji = "\u2714"; // Эмодзи "✅", альтернативный вариант для "U+2705"
+    statusEmoji = "\u2714"; // Эмодзи "✅", альтернативный вариант для "U+2705"
   }
   const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
   const report = await reportParser();
