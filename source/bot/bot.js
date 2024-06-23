@@ -26,7 +26,7 @@ const sendMessage = async () => {
   }
   const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
   const report = await reportParser();
-  const message = `New commit:${CI_COMMIT_SHA}\nUser: ${GITLAB_USER_NAME}\nTests: ${report.tests}\nStatus:${status}\nPassed: ${report.passed}\nFailed: ${report.failed}`;
+  const message = `New commit:${CI_COMMIT_SHA}\nUser: ${GITLAB_USER_NAME}\nTests: ${report.tests}\nStatus:${statusEmoji}\nPassed: ${report.passed}\nFailed: ${report.failed}`;
   bot
     .sendMessage(TELEGRAM_CHAT_ID, message)
     .then(() => bot.close())
